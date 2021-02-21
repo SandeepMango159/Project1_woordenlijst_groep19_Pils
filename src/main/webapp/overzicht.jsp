@@ -16,23 +16,46 @@
     </h1>
     <nav>
         <ul>
-            <li class = "actievePagina"><a href="index.jsp">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
+            <li><a href="index.jsp">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
             <li><a href="reserveer.jsp">Reserveer nu</a></li>
-            <li><a href="overzicht.jsp">Overzicht</a></li> <!--href linkt naar de andere pagina-->
+            <li class = "actievePagina"><a href="overzicht.jsp">Overzicht</a></li> <!--href linkt naar de andere pagina-->
         </ul>
     </nav>
 </header>
 <main>
-    <article>
-        <h2>Vakantiehuis aan zee</h2>
-        <p>
-            Welkom op onze website! Via deze website is het mogelijk om ons prachtig vakantiehuis aan de Belgische kust te reserveren voor een bepaalde duur naar uw eigen verlangen. Heeft u dus nood in een ontspannend weekend of een week vol sportiviteit aan onze kust? Klik dan snel
-            <a href="reserveer.jsp">hier</a> om te reserveren.
-        </p>
-        <p>
-            Via het navigatiemenu bovenaan deze pagina kan u verder ook kijken naar een overzicht van de reserveringen. Op die manier kan u uw bezoek perfect organiseren.
-        </p>
-    </article>
+    <h2>Overzicht reserveringen</h2>
+    <table>
+        <tr>
+            <th>Naam</th>
+            <th>Aantal</th>
+            <th>Start verblijf</th>
+            <th>Einde verblijf</th>
+        </tr>
+        <tr>
+            <td>Jarne Schreppers</td>
+            <td>4</td>
+            <td>14/02/2021</td>
+            <td>19/02/2021</td>
+        </tr>
+        <tr>
+            <td>Albert Franssen</td>
+            <td>3</td>
+            <td>20/02/2021</td>
+            <td>22/02/2021</td>
+        </tr>
+        <tr>
+            <td>Fien Jansen</td>
+            <td>6</td>
+            <td>24/02/2021</td>
+            <td>27/02/2021</td>
+        </tr>
+        <tr>
+            <td>Robert Decock</td>
+            <td>2</td>
+            <td>02/03/2021</td>
+            <td>07/03/2021</td>
+        </tr>
+    </table>
 </main>
 <footer>
     <p>Webontwikkeling 2 1TI6 2020-2021</p>

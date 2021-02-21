@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+/* ALGEMEEN */
+
+body{
+    font-family: Verdana, sans-serif; /* Geeft het lettertype aan. */
+    font-size: 1em; /* Geeft de lettergrootte aan. */
+    background-color: #FFE699; /* Geeft de achtergrond-kleur van dit item aan. */
+    line-height: 1.5em; /* Geeft de hoogte van een lijn aan, zorgt voor een goed leesbare tekst. */
+}
+
+/* HEADER */
+
+header {
+    height: auto; /* Geeft aan hoeveel hoogte de header mag innemen. */
+    background-color: white;
+    margin-bottom: 25px; /* Margin is alle ruimte buiten de border. */
+}
+
+h1 {
+    text-align: center;
+}
+
+nav ul{
+    display: flex; /* Dit element wordt weergegeven als een flexibele container. */
+    flex-wrap: wrap; /* Flex-wrap geeft aan of de navigatie over meerdere lijnen mag gaan. */
+    justify-content: center; /* Zet de flexibele container centraal. */
+    align-content: center; /* Zet de flex-wrap centraal in de container. */
+}
+
+nav ul li{
+    display: inline-block; /* Dit element wordt weergegeven als een block-element in een container. */
+    text-align: center; /* Geeft de horizontale plaats van tekst. */
+    background-color: #8EA9DB;
+    width: 100%; /* Geeft de breedte die de navigatie-items magen aannemen aan. */
+}
+
+nav a{
+    color: black;
+    display: block;
+    height: 15px;
+    padding-top: 1em; /* Padding is de ruimte tussen het item en zijn border. */
+    padding-bottom: 1.5em;
+    text-decoration-line: none;
+}
+
+nav li:hover { /* :hoover wordt actief als de muis erover gaat. */
+    color: #14120C; /* Een kleur bestaat uit 3 items: een waarde voor rood, groen en blauw. Elke waarde gaat van 0 tot 255 of van 00 tot FF hexadecimaal. */
+}
+
+nav a:hover {
+    background-color: white;
+    color: #14120C;
+}
+
+.actievePagina{
+    background-color: #002060;
+}
+
+.actievePagina a{
+    color: white;
+}
+
+/* MAIN ALGEMEEN */
+
+main {
+    color: black;
+    align-content: center;
+    width: 90%;
+    max-width: 1200px; /* Zorgt ervoor dat de main een maximale grootte zal aannemen op grote schermen*/
+    margin: auto;
+}
+
+h2{
+    text-align: center;
+    font-size:2em;
+    color: black;
+}
+
+main p {
+    margin-top: 1em;
+}
+
+/* MAIN FORMULIER */
+
+.pFormulier {
+    text-align: center;
+}
+
+form {
+    margin: auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+}
+
+form p {
+    margin-bottom: 1.5em;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+input, textarea, select {
+    display: block;
+    box-sizing: border-box; /* De width en height definities van dit item bevatten de content, padding en border. Dit wordt dus als het ware als één enkel item gezien. */
+    width: 100%;
+    line-height: 2em;
+    border: 1px solid #AAA;
+    border-radius: 0.4rem; /* Geeft de border ronde hoeken. */
+}
+
+#Bevestig{
+    background-color: #002060;
+    color: white;
+}
+
+select{
+    width: auto;
+}
+
+::placeholder, input, textarea, select { /* ::placeholder selecteert alle items van het formulier met een placeholder. */
+    font-size: 0.8rem;
+    padding: 0.4rem;
+}
+
+select {
+    height: 2.5rem;
+}
+
+/* MAIN OVERZICHT */
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    border: 1px solid black;
+}
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+    width: 10em;
+}
+
+th {
+    font-weight: bold;
+
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #8EA9DB;
+    text-decoration-line: none;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: black;
+    border-style: groove;
+    border-color: black;
+    border-top-width: 3px;
+}
+
+/* MEDIA SCREEN */
+
+@media screen and (min-width: 400px){ /* Geeft aan wat er veranderd als het scherm minstens 400px breed is. */
+
+    nav ul li {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+
+    nav ul li{
+        width: 33.3333333%;
+    }
+
+    form {
+        margin: auto;
+        max-width: 800px;
+        text-align: center;
+        padding-top: 1em;
+    }
+
+    form p {
+        display: grid; /* Dit item wordt weergegeven als een grid container. */
+        grid-template-areas: "label inputfield"; /* Geeft de delen van de grid aan. */
+        grid-template-columns: 1fr 2fr; /* Geeft het aantal kolommen van de grid en hun breedte aan. */
+        grid-column-gap: 1em; /* Geeft de opening tussen de verschillenden kolommen van de grid. */
+        align-items: center;
+    }
+
+    label, p > span:first-of-type {
+        grid-area: label;
+        grid-column-start: 1; /* Geeft aan in de hoeveelste kolom van de grid dit item begint. */
+        text-align: right;
+    }
+
+    input, textarea {
+        grid-area: inputfield;
+        grid-column-start: 2;
+    }
+}
