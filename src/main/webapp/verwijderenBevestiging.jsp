@@ -1,9 +1,8 @@
-<%@ page import="domain.model.Reservering" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="nl"> <!--Taal zorgt ervoor dat de site werkt met screenreaders-->
 <head>
-    <meta charset="UTF-8"> <!--Stelt de tekenset in-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!--Stelt de zichtbare ruimte van de site in-->
     <title>Jarne's vakantiehuis - Homepagina</title> <!--Geeft de titel weer in de tab van de browser-->
     <link rel="icon" type="image/png" href="images/logo.png" sizes="32x32"> <!--Geeft het icoontje weer in de tab van de browser-->
@@ -17,25 +16,20 @@
     </h1>
     <nav>
         <ul>
-            <li class = "actievePagina"><a href="Controller?command=home">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
+            <li><a href="Controller?command=home">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
             <li><a href="Controller?command=reserveer">Reserveer nu</a></li>
-            <li><a href="Controller?command=overview">Overzicht</a></li>
+            <li class = "actievePagina"><a href="Controller?command=overview">Overzicht</a></li>
             <li><a href="Controller?command=zoeken">Zoeken</a></li><!--href linkt naar de andere pagina-->
         </ul>
     </nav>
 </header>
 <main>
-    <article>
-        <h2>Vakantiehuis aan zee</h2>
-        <p>
-            Welkom op onze website! Via deze website is het mogelijk om ons prachtig vakantiehuis aan de Belgische kust te reserveren voor een bepaalde duur naar uw eigen verlangen. Heeft u dus nood in een ontspannend weekend of een week vol sportiviteit aan onze kust? Klik dan snel
-            <a href="Controller?command=reserveer">hier</a> om te reserveren.
-        </p>
-        <p>
-            Via het navigatiemenu bovenaan deze pagina kan u verder ook kijken naar een overzicht van de reserveringen. Op die manier kan u uw bezoek perfect organiseren.
-        </p>
-        <p>Momenteel is de reservering met het meeste aantal gasten gemaakt door <%=((Reservering)request.getAttribute("meesteGasten")).getNaam()%>, met een totaal van <%=((Reservering)request.getAttribute("meesteGasten")).getAantalGasten()%> gasten.</p>
-    </article>
+    <h2>Bevestiging</h2>
+    <p class = verwijderen>Ben je zeker dat je de reservering van <%= request.getParameter("naam") %> wil verwijderen?</p>
+    <form action="Controller?command=delete&naam=<%= request.getParameter("naam") %>" method="POST">
+        <input class = "bevestiging" type="submit" value="Ja"/>
+    </form>
+    <p class = verwijderen><a href="Controller?command=overview">Cancel</a> indien je de reservering niet wil verwijderen.</p>
 </main>
 <footer>
     <p>Webontwikkeling 2 1TI6 2020-2021</p>
@@ -43,3 +37,4 @@
 </footer>
 </body>
 </html>
+

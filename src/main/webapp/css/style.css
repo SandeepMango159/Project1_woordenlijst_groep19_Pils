@@ -83,7 +83,7 @@ main p {
 
 /* MAIN FORMULIER */
 
-.pFormulier {
+.pCentraal {
     text-align: center;
 }
 
@@ -129,6 +129,11 @@ select {
     height: 2.5rem;
 }
 
+.verplicht {
+    margin-left: calc(40%);
+    margin-top: unset;
+}
+
 /* MAIN OVERZICHT */
 
 table {
@@ -146,7 +151,19 @@ th, td {
 
 th {
     font-weight: bold;
+}
 
+/* MAIN VERWIJDERPAGINA */
+
+p.verwijderen {
+    text-align: center;
+}
+
+input.bevestiging {
+    width: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* FOOTER */
@@ -176,14 +193,13 @@ footer {
 @media screen and (min-width: 600px) {
 
     nav ul li{
-        width: 33.3333333%;
+        width: 25%;
     }
 
     form {
         margin: auto;
         max-width: 800px;
         text-align: center;
-        padding-top: 1em;
     }
 
     form p {

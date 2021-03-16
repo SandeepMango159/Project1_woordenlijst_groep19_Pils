@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="nl"> <!--Taal zorgt ervoor dat de site werkt met screenreaders-->
 <head>
-    <meta charset="UTF-8"> <!--Stelt de tekenset in-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!--Stelt de zichtbare ruimte van de site in-->
     <title>Jarne's vakantiehuis - Homepagina</title> <!--Geeft de titel weer in de tab van de browser-->
     <link rel="icon" type="image/png" href="images/logo.png" sizes="32x32"> <!--Geeft het icoontje weer in de tab van de browser-->
@@ -16,36 +16,35 @@
     </h1>
     <nav>
         <ul>
-            <li><a href="index.jsp">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
-            <li class = "actievePagina"><a href="reserveer.jsp">Reserveer nu</a></li>
-            <li><a href="overzicht.jsp">Overzicht</a></li> <!--href linkt naar de andere pagina-->
+            <li><a href="Controller?command=home">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
+            <li class = "actievePagina"><a href="Controller?command=reserveer">Reserveer nu</a></li>
+            <li><a href="Controller?command=overview">Overzicht</a></li>
+            <li><a href="Controller?command=zoeken">Zoeken</a></li><!--href linkt naar de andere pagina-->
         </ul>
     </nav>
 </header>
 <main>
     <section>
-        <h2>Reservering</h2>
-        <p class = "pFormulier">Via het onderstaande formulier kan u snel en eenvoudig een reservering plaatsen.</p>
-        <form id="bestellingForm" action="#"> <!--Action element geeft aan waar de data naartoe wordt verzonden na het invullen van het formulier-->
+        <h2>Reserveren</h2>
+        <p class = "pCentraal">Via het onderstaande formulier kan u snel en eenvoudig een reservering plaatsen.</p>
+        <form method="POST" id = "bestellingForm" action="Controller?command=add" novalidate> <!--Action element geeft aan waar de data naartoe wordt verzonden na het invullen van het formulier-->
 
-            <p><label for="naam">Naam:<span>*</span></label> <!--Label geeft aan wat er links staat-->
-                <input type="text" name="Naam" id="naam" required placeholder="Jan Jansens"></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
+            <p><label for="naam">Naam:</label> <!--Label geeft aan wat er links staat-->
+                <input type="text" name="naam" id="naam" placeholder="Jan Jansens"></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
 
-            <p><label for="telefoon">Telefoonnummer:<span>*</span></label>
-                <input type="tel" name="Telefoon" id="telefoon" required placeholder="0412345678"></p> <!--Required geeft aan dat dit veld verplicht moet worden ingevuld-->
+            <p><label for="aantalGasten">Aantal gasten:</label> <!--Label geeft aan wat er links staat-->
+                <input type="number" name="aantalGasten" id="aantalGasten" placeholder="8" min="1"></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
 
-            <p><label for="aantal">Aantal gasten:<span>*</span></label> <!--Label geeft aan wat er links staat-->
-                <input type="text" name="Aantal" id="aantal" required placeholder="8"></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
+            <p><label for="startdatum">Startdatum verblijf:</label>
+                <input type="text" name="startdatum" id="startdatum"></p> <!--Name wordt gebruikt voor verwijzingen in Javascript-->
 
-            <p><label for="startdatum">Startdatum verblijf:<span>*</span></label>
-                <input type="datetime-local" name="Datum" id="startdatum" required></p> <!--Name wordt gebruikt voor verwijzingen in Javascript-->
-
-            <p><label for="einddatum">Einddatum verblijf:<span>*</span></label>
-                <input type="datetime-local" name="Datum" id="einddatum" required></p> <!--Name wordt gebruikt voor verwijzingen in Javascript-->
+            <p><label for="einddatum">Einddatum verblijf:</label>
+                <input type="text" name="einddatum" id="einddatum"></p> <!--Name wordt gebruikt voor verwijzingen in Javascript-->
 
             <p><label for="Bevestig"></label>
-                <input type="Submit" id="Bevestig" value="Bestel nu"></p> <!--Verzend het formulier-->
+                <input type="Submit" id="Bevestig" value="Bevestig"></p> <!--Verzend het formulier-->
         </form>
+        <p class = verplicht>* Alle velden dienen verplicht te worden ingevuld.</p>
     </section>
 </main>
 <footer>
