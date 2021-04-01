@@ -21,7 +21,6 @@ public class WebsiteTest {
         // PAS DIT AAN NAAR JE EIGEN CHROME OF GECKODRIVER
         System.setProperty("webdriver.chrome.driver", "src\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
-
     }
 
     @After
@@ -31,21 +30,35 @@ public class WebsiteTest {
 
     @Test
     public void test_formulier_woord_toevegen_alles_invullen_gaat_naar_overzicht_en_toont_nieuwe_woord_in_tabel() {
-            driver.get(url);
-//        driver.get(url + "woordToevoegen.jsp");
-//        voegWoordToe("Woord", "beginner");
-//        assertEquals("Groep 19 - Woord toevoegen", driver.getTitle());
-//        assertEquals("Woord Toevoegen", driver.findElement(By.tagName("h2")).getText());
-//
-//        assertTrue(paginaBevatTdMetText(driver.findElements(By.tagName("td")), "Water"));
-//        assertTrue(paginaBevatTdMetText(driver.findElements(By.tagName("td")), "beginner"));
-        assertEquals("Jaja", "Jaja");
+        driver.get(url);
+        driver.get(url + "woordToevoegen.jsp");
+        assertEquals("Groep 19 - Woord toevoegen", driver.getTitle());
+
+        voegWoordToe("Woord", "beginner");
+        assertEquals("Woordenlijst", driver.findElement(By.tagName("h2")).getText());
+
+        assertTrue(paginaBevatTdMetText(driver.findElements(By.tagName("td")), "Woord"));
+        assertTrue(paginaBevatTdMetText(driver.findElements(By.tagName("td")), "beginner"));
+//        assertEquals("Jaja", "Jaja");
     }
 
     private void voegWoordToe(String woord, String niveau) {
         driver.findElement(By.id("woord")).sendKeys(woord);
         driver.findElement(By.id("niveau")).sendKeys(niveau);
         driver.findElement(By.id("Bevestig")).click();
+    }
+
+    @Test
+    public void test_formulier_woord_toevegen_fout_invullen_gaat_naar_formterug() {
+        driver.get(url);
+        driver.get(url + "woordToevoegen.jsp");
+        assertEquals("Groep 19 - Woord toevoegen", driver.getTitle());
+
+        // Hangman zit er al standaard in
+        voegWoordToe("hangman", "beginner");
+        // Dan blijf je op de formulier pagina
+        assertEquals("Woord Toevoegen", driver.findElement(By.tagName("h2")).getText());
+
     }
 
 
