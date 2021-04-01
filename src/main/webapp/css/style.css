@@ -1,223 +1,432 @@
-@charset "UTF-8";
+/* TODO Zorgen dat de img goed gesized wordt in Chrome want font is groter daar, 20px ipv standaard 16px */
 
-/* ALGEMEEN */
 
-body{
-    font-family: Verdana, sans-serif; /* Geeft het lettertype aan. */
-    font-size: 1em; /* Geeft de lettergrootte aan. */
-    background-color: #FFE699; /* Geeft de achtergrond-kleur van dit item aan. */
-    line-height: 1.5em; /* Geeft de hoogte van een lijn aan, zorgt voor een goed leesbare tekst. */
+* {
+    color: white;
+    font-family: Roboto, sans-serif;
+    font-size: 1.1rem;
+
+    /* SCrollbar voor firefox */
+    scrollbar-color: #348FFF #282A39;
+    scrollbar-width: thin;
 }
 
-/* HEADER */
+
+
+
+
+/* +++++++++++++++++++++++++++++++ Scrollbar */
+
+/* Voor Chrome enz, webkit browsers, horizontal en vertical */
+/* Is de scrollbar achtergrond */
+::-webkit-scrollbar-track {
+    background-color: #282A39 ;
+}
+
+/* Heel de scrollbar */
+::-webkit-scrollbar {
+
+    width: 7px;
+}
+
+/* De scrollbar draggable handle */
+::-webkit-scrollbar-thumb {
+    background-color: #348FFF;
+}
+
+/* Voor Chrome enz, webkit browsers, speicifiek horizontal */
+::-webkit-scrollbar-track:horizontal {
+    background-color: #232533 ;
+
+}
+
+/* All page CSS */
+
+/* ++++++++++++++++++++++++++++++++ Body */
+body {
+    background-color: #232533;
+    /* Lineair backgrounds zijn ni zo handig, zien er ni zo goed uit tbh...*/
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+/* Deze voegt een achtergrond afbeelding toe aan body, mooi parallax */
+/* Past echt goed bij de form */
+/* Deze ID is al bij de vorm dus nmoet niet nog eensbody erachter zetten */
+#coverBackgroundPic {
+    /* background: url(../images/Satsuki_Kiryuin.jpg) no-repeat center center fixed;  */
+    background: url(../images/zonsondergang.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/* Alleen de footer op de pagina's met coverBackgroundPic */
+#coverBackgroundPic footer {
+    box-shadow: 0px -7px 15px 10px rgba(0,0,0,0.66);
+}
+
+#coverBackgroundPic header {
+    box-shadow: 0px 7px 15px 10px rgba(0,0,0,0.66);
+}
+
+/* ++++++++++++++++++++++++++++++++ Header */
 
 header {
-    height: auto; /* Geeft aan hoeveel hoogte de header mag innemen. */
-    background-color: white;
-    margin-bottom: 25px; /* Margin is alle ruimte buiten de border. */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+;
+    /*  */
+    background-color: #282A39;
+    margin-bottom: 2rem;
+    /*  */
+    /* border: 5px double;
+    border-radius: 0.5em; */
+
 }
 
 h1 {
-    text-align: center;
+    /* border: 5px double;
+    border-radius: 0.5em; */
+
+    /*  Wrm weer display table???*/
+    display: table;
+
 }
 
-nav ul{
-    display: flex; /* Dit element wordt weergegeven als een flexibele container. */
-    flex-wrap: wrap; /* Flex-wrap geeft aan of de navigatie over meerdere lijnen mag gaan. */
-    justify-content: center; /* Zet de flexibele container centraal. */
-    align-content: center; /* Zet de flex-wrap centraal in de container. */
+h1 picture {
+    margin: auto;
+    display: table-cell;
+    vertical-align: middle;
+    /*  */
+    /* border: 2px dashed;
+    border-radius: 0.5em; */
+
 }
 
-nav ul li{
-    display: inline-block; /* Dit element wordt weergegeven als een block-element in een container. */
-    text-align: center; /* Geeft de horizontale plaats van tekst. */
-    background-color: #8EA9DB;
-    width: 100%; /* Geeft de breedte die de navigatie-items magen aannemen aan. */
-}
+img {
 
-nav a{
-    color: black;
     display: block;
-    height: 15px;
-    padding-top: 1em; /* Padding is de ruimte tussen het item en zijn border. */
-    padding-bottom: 1.5em;
-    text-decoration-line: none;
+    margin: auto;
+    max-width: 255px;
+    width: 100%;
+    /*  */
+    /* border: 1px solid;
+    border-radius: 0.5em; */
+}
+/*
+nav {
+    border: 1px dashed;
+    border-radius: 0.5em;
+} */
+
+/* ++++++++++++++++++++++++++++++++ Navigation */
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0;
+    /*  */
+    list-style-type: none;
+    /*  */
+    /* border: 5px double;
+    border-radius: 0.5em; */
 }
 
-nav li:hover { /* :hoover wordt actief als de muis erover gaat. */
-    color: #14120C; /* Een kleur bestaat uit 3 items: een waarde voor rood, groen en blauw. Elke waarde gaat van 0 tot 255 of van 00 tot FF hexadecimaal. */
+nav ul li {
+    margin: 0.3rem 1rem;
+    /* Nodig om li namen te centreren en ni van rechts te beginnen */
+    text-align: center;
+    /* Flex is om te groeien, dan breidt die de li uit */
+    flex: 1;
+    /* Min width want ja anders waren die blokke ni groot genoeg */
+    min-width: 7.5rem;
+    /* Voeg transparante border toe zodat als je hovert de rest niet eronder wordt weg geduwd als je dit niet had... Nu verandert enkel de kleur das goed */
+    border-bottom: 3px solid transparent;
+    /* transities voor hover */
+    transition-property: border;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-nav a:hover {
-    background-color: white;
-    color: #14120C;
+/* Focus-within is voor als huidige of child focus */
+nav ul li:hover, nav ul li:focus-within {
+    border-bottom: 3px solid #348FFF;
 }
 
-.actievePagina{
-    background-color: #002060;
+nav ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
 }
 
-.actievePagina a{
-    color: white;
+nav ul li a:focus {
+    outline: none;
+    /* border-top: dashed;
+    border-left: dashed;
+    border-right: dashed; */
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
 }
 
-/* MAIN ALGEMEEN */
+.current {
+    color: #348FFF;
+    /* border-bottom: 3px solid #348FFF; */
+}
+
+li.current {
+    border-bottom: 3px solid #348FFF;
+
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Main  */
 
 main {
-    color: black;
-    align-content: center;
-    width: 90%;
-    max-width: 1200px; /* Zorgt ervoor dat de main een maximale grootte zal aannemen op grote schermen*/
-    margin: auto;
+    margin: 0.5rem 0.5rem 5rem 0.5rem;
 }
 
-h2{
-    text-align: center;
-    font-size:2em;
-    color: black;
-}
 
 main p {
-    margin-top: 1em;
+    margin: 0 auto;
 }
 
-/* MAIN FORMULIER */
+main a {
+    transition-property: color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    border-bottom: 3px solid transparent;
 
-.pCentraal {
+}
+
+
+/* ++++++++++++ Main Table */
+
+/* Hell yes eindelijk geen gekleurde horizontale scrollbar in Firefox, niet voor Chrome */
+#tableOverflow {
+    overflow-x: scroll;
+    scrollbar-color: #348FFF #232533;
+    scrollbar-width: thin;
+}
+
+
+main table th:nth-child(3) {
+    width: 8rem;
+    /* Eigenlijk heb ik max-width niet nodig, in tables werkt de width op een rare manier man... min width ook ni */
+    /* max-width: 12rem; */
+}
+
+main table th:last-child {
+    width: 6rem;
+    /* Eigenlijk heb ik max-width niet nodig, in tables werkt de width op een rare manier man... min width ook ni */
+    /* max-width: 12rem; */
+}
+
+main table td {
     text-align: center;
 }
 
+main table tbody tr:nth-child(odd) {
+    background-color: #282A39;
+}
+
+
+/* ++++++++++++++++++++++++++++++++ URL links */
+
+
+/* Voor nav en alle links */
+a:hover, a:focus {
+    color: #348FFF;
+}
+
+/* Voor de links in de main */
+main a:hover, main a:focus {
+    /* Zodat de onderlijning verdwijnt en er een blauwe streep onderkomt */
+    /* En dus niet een blauwe streep ook bij de nav links */
+    text-decoration: none;
+    border-bottom: 3px solid  #348FFF;
+
+}
+
+/* ++++++++++++++++++++++++++++++++ Main tekst */
+
+
+h2 {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+
+/* ++++++++++++++++++++++++++++++++ Forms */
+
+
 form {
-    margin: auto;
-    font-family: Arial, sans-serif;
-    line-height: 1.4;
+    margin: 0 0.1rem;
+
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.8) ;
+
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 form p {
-    margin-bottom: 1.5em;
+    margin: 0;
 }
 
 label {
     display: block;
-    margin-bottom: 0.4rem;
-}
-
-input, textarea, select {
-    display: block;
-    box-sizing: border-box; /* De width en height definities van dit item bevatten de content, padding en border. Dit wordt dus als het ware als één enkel item gezien. */
-    width: 100%;
-    line-height: 2em;
-    border: 1px solid #AAA;
-    border-radius: 0.4rem; /* Geeft de border ronde hoeken. */
-}
-
-#Bevestig{
-    background-color: #002060;
-    color: white;
-}
-
-select{
-    width: auto;
-}
-
-::placeholder, input, textarea, select { /* ::placeholder selecteert alle items van het formulier met een placeholder. */
-    font-size: 0.8rem;
-    padding: 0.4rem;
 }
 
 select {
-    height: 2.5rem;
+    background: #232533;
 }
 
-.verplicht {
-    margin-left: calc(40%);
-    margin-top: unset;
+select:focus {
+    outline: none;
+    border-bottom: 3px solid #348FFF;
+
 }
 
-/* MAIN OVERZICHT */
+input {
+    margin-bottom: 1.5rem;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 3px solid #282A39;
+    width: 95%;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 
-table {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1em;
-    border: 1px solid black;
-}
-th, td {
-    border: 1px solid black;
-    text-align: center;
-    vertical-align: middle;
-    width: 10em;
 }
 
-th {
-    font-weight: bold;
+input:focus {
+    outline: none;
+    border-bottom: 3px solid #348FFF;
 }
 
-/* MAIN VERWIJDERPAGINA */
+button {
+    background: transparent;
+    margin: auto;
+    padding: 0.6rem 2rem;
+    border: 3px solid #232533;
+    border-radius: 10px;
+    transition-property: all;
+    transition-timing-function: ease-in;
+    transition-delay: 0.1s;
 
-p.verwijderen {
-    text-align: center;
 }
 
-input.bevestiging {
-    width: 20%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+button:hover {
+    border: 3px solid #232533;
+    background-color: #348FFF;
 }
 
-/* FOOTER */
+
+
+/* ++++++++++++++++++++++++++++++++ Footer */
+
 
 footer {
-    background-color: #8EA9DB;
-    text-decoration-line: none;
-    margin-top: 20px;
-    padding-top: 5px;
-    padding-bottom: 10px;
     text-align: center;
-    color: black;
-    border-style: groove;
-    border-color: black;
-    border-top-width: 3px;
+    background-color: #282A39;
+    margin-top: auto;
 }
 
-/* MEDIA SCREEN */
-
-@media screen and (min-width: 400px){ /* Geeft aan wat er veranderd als het scherm minstens 400px breed is. */
-
-    nav ul li {
-        width: 50%;
-    }
+#horizontalrule {
+    margin-top: 2rem;
+    width: 80%;
 }
+
+
+
 
 @media screen and (min-width: 600px) {
 
-    nav ul li{
-        width: 33.3333333%;
-    }
-
-    form {
+    main table {
         margin: auto;
-        max-width: 800px;
-        text-align: center;
+        width: 90%;
+        /* Borders */
+        border-collapse: separate;
+        border-spacing: 0.1rem 0.3rem;
     }
 
+    /* Border rond een rij dus alternatief voor main table tr  */
+
+    /* main table td {
+        border-top: solid black ;
+        border-bottom: solid black;
+    }
+
+    main table td:first-child {
+        border-left: solid black;
+    }
+
+    main table td:last-child {
+        border-right: solid  black;
+    } */
+
+
+
+
+}
+
+
+@media screen and (min-width: 1150px) {
+    /* Maak het logo groter */
+    header img {
+        max-width: 350px;
+    }
+
+    main p {
+        /* margin: 2rem auto; */
+        /*  5rem van linkerkant */
+        margin: 0 auto 0 5rem;
+        line-height: 1.5rem;
+    }
+
+    main table {
+        line-height: 2rem;
+    }
+
+    /* Moet deze erbij anders neemt die p de margin over van main p */
     form p {
-        display: grid; /* Dit item wordt weergegeven als een grid container. */
-        grid-template-areas: "label inputfield"; /* Geeft de delen van de grid aan. */
-        grid-template-columns: 1fr 2fr; /* Geeft het aantal kolommen van de grid en hun breedte aan. */
-        grid-column-gap: 1em; /* Geeft de opening tussen de verschillenden kolommen van de grid. */
-        align-items: center;
+        margin: 0;
     }
 
-    label, p > span:first-of-type {
-        grid-area: label;
-        grid-column-start: 1; /* Geeft aan in de hoeveelste kolom van de grid dit item begint. */
-        text-align: right;
+    form  label {
+        margin: 0 5rem;
     }
 
-    input, textarea {
-        grid-area: inputfield;
-        grid-column-start: 2;
+    main form {
+        margin: 0 5rem;
+
     }
+
+
+}
+
+@media screen and (min-width: 1375px) {
+    header h1 {
+        /* Plaats het logo 5rem van de linkerkant */
+        margin: auto auto auto 5rem;
+        vertical-align: middle;
+    }
+
+    nav {
+        /* Navigatie 5rem van rechterkant af.... oke */
+        margin: 0 5rem 0 auto;
+
+    }
+
+
+
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Woord {
     private String woord;
-    private String niveau;
+    private String niveau = "";
 
     public Woord(String woord) {
         this.setWoord(woord);
@@ -35,7 +35,12 @@ public class Woord {
     }
 
     public void setNiveau(String niveau) {
-        this.niveau = niveau;
+        if (niveau.equals("beginner")  || niveau.equals("expert")) {
+            this.niveau = niveau;
+        }
+        else {
+            throw new DomainException("Het niveau mag enkel 'beginner' of 'expert' zijn.");
+        }
     }
 
     public int getAantalVerschillendeLetters() {
@@ -56,7 +61,9 @@ public class Woord {
     public boolean equals(Object obj) {
         if (obj instanceof Woord) {
             Woord woord = (Woord) obj;
-            if (this.getWoord().equals(woord.getWoord()) ) {
+            // Een woord mag niet 2 keer in de lijst voorkomen want dan kan je
+            // "hangman expert" en "hangman beginner" hebben, dus enkel op woord checken niet op woord en niveau
+            if (this.getWoord().equals(woord.getWoord())) {
                 return true;
             }
         }

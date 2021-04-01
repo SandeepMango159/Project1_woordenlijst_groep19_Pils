@@ -17,7 +17,7 @@
     <nav>
         <ul>
             <li><a href="Controller?command=home">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
-            <li><a href="Controller?command=reserveer">Reserveer nu</a></li>
+            <li><a href="Controller?command=woordToevoegen">Reserveer nu</a></li>
             <li class = "actievePagina"><a href="Controller?command=overview">Overzicht</a></li>
         </ul>
     </nav>
