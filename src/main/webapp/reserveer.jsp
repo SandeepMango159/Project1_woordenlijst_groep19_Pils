@@ -29,10 +29,10 @@
         <form method="POST" id = "bestellingForm" action="Controller?command=add" novalidate> <!--Action element geeft aan waar de data naartoe wordt verzonden na het invullen van het formulier-->
 
             <p><label for="woord">Woord *:</label> <!--Label geeft aan wat er links staat-->
-                <input type="text" name="woord" id="woord" placeholder="Woord"></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
+                <input type="text" name="woord" id="woord" placeholder="Woord" value=<%= request.getAttribute("woord") != null ? request.getAttribute("woord") : ""%>></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
 
             <p><label for="niveau">Niveau:</label> <!--Label geeft aan wat er links staat-->
-                <input type="text" name="niveau" id="niveau" placeholder="null"></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
+                <input type="text" name="niveau" id="niveau" placeholder="null" value=<%= request.getAttribute("niveau") != null ? request.getAttribute("niveau") : ""%>></p> <!--Input geeft aan wat de gebruiken moet ingeven-->
 
             <p><label for="Bevestig"></label>
                 <input type="Submit" id="Bevestig" value="Bevestig"></p> <!--Verzend het formulier-->

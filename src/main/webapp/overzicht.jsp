@@ -47,7 +47,7 @@
             <td><%=nummer%></td>
             <td><%=w.getWoord()%></td>
             <td><%=w.getNiveau() == null ? "" : w.getNiveau()%></td>
-            <td><a>Pas aan</a></td>
+            <td><a href=<%="Controller?command=change&woord=" + w.getWoord()%>>Pas aan</a></td>
             <td><a href="Controller?command=deleteConfirmation&naam=<%= w.getWoord() %>">Verwijder</a></td>
         </tr>
         <% }

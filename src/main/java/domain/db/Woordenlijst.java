@@ -21,9 +21,11 @@ public class Woordenlijst {
             throw new DomainException("Het woord mag niet leeg zijn.");
         }
         if (this.woorden.contains(woord)) {
-            throw new DomainException("Dit woord zit al in de woordenlijst.");
+            this.vind(woord.getWoord()).setNiveau(woord.getNiveau());
         }
-        this.woorden.add(woord);
+        else {
+            this.woorden.add(woord);
+        }
     }
 
     public Woord vind(String woord) {

@@ -53,6 +53,9 @@ public class Controller extends HttpServlet {
             case "delete":
                 destination = delete(request, response);
                 break;
+            case "change":
+                destination = change(request, response);
+                break;
             case "download":
                 destination = download(request, response);
                 break;
@@ -79,6 +82,15 @@ public class Controller extends HttpServlet {
         request.setAttribute("kortste", db.getKortsteWoord());
         request.setAttribute("tekens", db.getGemiddeldAantalVerschillendeLetters());
         return "index.jsp";
+    }
+
+    private String change(HttpServletRequest request, HttpServletResponse response) {
+        String woord = request.getParameter("woord");
+        request.setAttribute("woord", woord);
+        if (this.db.vind(woord) != null) {
+            request.setAttribute("niveau", this.db.vind(woord).getNiveau());
+        }
+        return "reserveer.jsp";
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
@@ -114,7 +126,7 @@ public class Controller extends HttpServlet {
     private String add(HttpServletRequest request, HttpServletResponse response) {
         String woord = request.getParameter("woord");
         String niveau = request.getParameter("niveau");
-        if (!woord.isEmpty() && !niveau.isEmpty()) {
+        if (!woord.isEmpty()) {
             Woord nieuwWoord = new Woord(woord, niveau);
             db.voegToe(nieuwWoord);
             return overview(request, response);
