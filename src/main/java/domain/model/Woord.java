@@ -35,7 +35,7 @@ public class Woord {
     }
 
     public void setNiveau(String niveau) {
-        if (niveau != "beginner" && niveau != "expert") {
+        if (!niveau.equals("beginner") && !niveau.equals("expert")) {
             throw new DomainException("Het niveau mag enkel 'beginner' of 'expert' zijn.");
         }
         this.niveau = niveau;
