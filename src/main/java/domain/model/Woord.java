@@ -59,7 +59,7 @@ public class Woord {
     public boolean equals(Object obj) {
         if (obj instanceof Woord) {
             Woord woord = (Woord) obj;
-            if (this.getWoord().equals(woord.getWoord()) && this.getNiveau().equals(woord.getNiveau())) {
+            if (this.getWoord().equals(woord.getWoord()) ) {
                 return true;
             }
         }

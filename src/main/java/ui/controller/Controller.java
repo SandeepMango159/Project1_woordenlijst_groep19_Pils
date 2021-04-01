@@ -110,7 +110,7 @@ public class Controller extends HttpServlet {
     }
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
-        String woord = request.getParameter("woord");
+        String woord = request.getParameter("naam");
         db.verwijder(woord);
         return overview(request, response);
     }

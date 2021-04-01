@@ -31,7 +31,7 @@ public class Woordenlijst {
             throw new DomainException("De naam mag niet leeg zijn.");
         }
         for (Woord w : this.woorden) {
-            if (w.equals(woord)) {
+            if (w.getWoord().equals(woord)) {
                 return w;
             }
         }
