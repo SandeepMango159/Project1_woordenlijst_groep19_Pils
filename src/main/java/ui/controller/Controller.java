@@ -74,6 +74,10 @@ public class Controller extends HttpServlet {
     }
 
     private String home(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("aantal", db.getAantalWoorden());
+        request.setAttribute("langste", db.getLangsteWoord());
+        request.setAttribute("kortste", db.getKortsteWoord());
+        request.setAttribute("tekens", db.getGemiddeldAantalVerschillendeLetters());
         return "index.jsp";
     }
 
