@@ -25,7 +25,10 @@
     </nav>
 </header>
 <main>
-    <h2>Woordenlijst</h2>
+    <h2>Woordenlijst <a href="Controller?command=download">[Download]</a></h2>
+    <p>Kies een filter: <a href="Controller?command=overview&filter=beginner">Beginner-woorden</a>
+        <a href="Controller?command=overview&filter=expert">Expert-woorden</a>
+        <a href="Controller?command=overview">Alle-woorden</a></p>
     <table>
         <thread>
             <tr>
@@ -36,15 +39,17 @@
         <tbody>
         <% ArrayList<Woord> woorden = (ArrayList<Woord>)request.getAttribute("woorden"); %>
         <%
+            int nummer = 0;
             for (Woord w : woorden) {
+                nummer++;
         %>
-            <tr>
-                <td>0</td>
-                <td><%=w.getWoord()%></td>
-                <td><%=w.getNiveau()%></td>
-                <td><a>Pas aan</a></td>
-                <td><a href="Controller?command=deleteConfirmation&naam=<%= w.getWoord() %>">Verwijder</a></td>
-            </tr>
+        <tr>
+            <td><%=nummer%></td>
+            <td><%=w.getWoord()%></td>
+            <td><%=w.getNiveau() == null ? "" : w.getNiveau()%></td>
+            <td><a>Pas aan</a></td>
+            <td><a href="Controller?command=deleteConfirmation&naam=<%= w.getWoord() %>">Verwijder</a></td>
+        </tr>
         <% }
         %>
         </tbody>

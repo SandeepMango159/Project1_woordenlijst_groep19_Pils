@@ -10,9 +10,9 @@ public class Woordenlijst {
     private List<Woord> woorden =  new ArrayList<Woord>();
 
     public Woordenlijst() {
-        this.voegToe(new Woord("pneumonoultramicroscopicsilicovolcanoconiosis", "expert"));
-        this.voegToe(new Woord("wiel", "beginner"));
         this.voegToe(new Woord("hangman"));
+        this.voegToe(new Woord("wiel", "beginner"));
+        this.voegToe(new Woord("pneumonoultramicroscopicsilicovolcanoconiosis", "expert"));
 
     }
 
@@ -31,7 +31,7 @@ public class Woordenlijst {
             throw new DomainException("De naam mag niet leeg zijn.");
         }
         for (Woord w : this.woorden) {
-            if (w.equals(woord)) {
+            if (w.getWoord().equals(woord)) {
                 return w;
             }
         }
@@ -44,5 +44,69 @@ public class Woordenlijst {
 
     public List<Woord> getWoorden() {
         return this.woorden;
+    }
+
+    public int getAantalWoorden() {
+        return this.woorden.size();
+    }
+
+    public String getLangsteWoord() {
+        if (this.woorden.size() == 0) {
+            return "De woordenlijst is nog leeg.";
+        }
+        int lengte = 0;
+        Woord result = null;
+        for (Woord w : woorden) {
+            if (w.getLengte() > lengte) {
+                lengte = w.getLengte();
+                result = w;
+            }
+        }
+        return result.getWoord();
+    }
+
+    public String getKortsteWoord() {
+        if (this.woorden.size() == 0) {
+            return "De woordenlijst is nog leeg.";
+        }
+        int lengte = this.woorden.get(0).getLengte();
+        Woord result = null;
+        for (Woord w : woorden) {
+            if (w.getLengte() < lengte) {
+                lengte = w.getLengte();
+                result = w;
+            }
+        }
+        return result.getWoord();
+    }
+
+    public float getGemiddeldAantalVerschillendeLetters() {
+        int aantalWoorden = this.getAantalWoorden();
+        int tekens = 0;
+        for (Woord w : this.woorden) {
+            tekens += w.getAantalVerschillendeLetters();
+        }
+        float result = (float) tekens/ (float)aantalWoorden;
+        return Math.round(result*100.0F)/100.0F;
+    }
+
+    public List<Woord> getBeginner() {
+        ArrayList<Woord> result = new ArrayList<Woord>();
+        for (Woord w : this.getWoorden()) {
+            if (w.getNiveau() != null && w.getNiveau().equals("beginner")) {
+                result.add(w);
+            }
+        }
+        return result;
+    }
+
+    public List<Woord> getExpert() {
+        ArrayList<Woord> result = new ArrayList<Woord>();
+        for (Woord w : this.getWoorden()) {
+            if (w.getNiveau() != null && w.getNiveau().equals("expert")) {
+                result.add(w);
+            }
+        }
+        return result;
     }
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
@@ -27,13 +28,11 @@ public class Controller extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("zit in post");
         processRequest(request, response);
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("command is " + request.getParameter("command"));
         String command = "home";
         if (request.getParameter("command") != null) {
             command = request.getParameter("command");
@@ -59,6 +58,9 @@ public class Controller extends HttpServlet {
             case "delete":
                 destination = delete(request, response);
                 break;
+            case "download":
+                destination = download(request, response);
+                break;
             case "woordToevoegen":
                 destination = woordToevoegen(request, response);
                 break;
@@ -77,11 +79,40 @@ public class Controller extends HttpServlet {
     }
 
     private String home(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("aantal", db.getAantalWoorden());
+        request.setAttribute("langste", db.getLangsteWoord());
+        request.setAttribute("kortste", db.getKortsteWoord());
+        request.setAttribute("tekens", db.getGemiddeldAantalVerschillendeLetters());
         return "index.jsp";
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("woorden", db.getWoorden());
+        String filter = request.getParameter("filter");
+        if (filter == null) {
+            request.setAttribute("woorden", db.getWoorden());
+            return "overzicht.jsp";
+        }
+        else if (filter.equals("expert")) {
+            request.setAttribute("woorden", db.getExpert());
+            return "overzicht.jsp";
+        }
+        else if (filter.equals("beginner")) {
+            request.setAttribute("woorden", db.getBeginner());
+            return "overzicht.jsp";
+        } else {
+            request.setAttribute("woorden", db.getWoorden());
+            return "overzicht.jsp";
+        }
+    }
+
+    private String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String filename = "woorden.txt";
+        response.setContentType("APPLICATION/OCTET-STREAM");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename +
+                "\""); PrintWriter out = response.getWriter();
+        for (Woord woord : db.getWoorden())
+            out.println(woord.getWoord());
+        out.close();
         return "overzicht.jsp";
     }
 
@@ -145,7 +176,7 @@ public class Controller extends HttpServlet {
     }
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
-        String woord = request.getParameter("woord");
+        String woord = request.getParameter("naam");
         db.verwijder(woord);
         return overview(request, response);
     }

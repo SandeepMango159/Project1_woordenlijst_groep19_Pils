@@ -27,6 +27,11 @@
     <article>
         <h2>Beheerapplicatie woordenlijst</h2>
         <p>Met deze applicatie kan je de woordenlijst beheren om in het spelletje Hangman te gebruiken.</p>
+        <h3>Statistieken</h3>
+        <p>Het aantal woorden in de woordenlijst: <%=request.getAttribute("aantal")%></p>
+        <p>Het langste woord in de woordenlijst: <%=request.getAttribute("langste")%></p>
+        <p>Het kortste woord in de woordenlijst: <%=request.getAttribute("kortste")%></p>
+        <p>Het gemiddeld aantal verschillende letters van de woorden in de woordenlijst: <%=request.getAttribute("tekens")%></p>
     </article>
 </main>
 <footer>

@@ -1,5 +1,7 @@
 package domain.model;
 
+import java.util.ArrayList;
+
 public class Woord {
     private String woord;
     private String niveau = "";
@@ -21,6 +23,10 @@ public class Woord {
         return this.niveau;
     }
 
+    public int getLengte() {
+        return this.woord.length();
+    }
+
     public void setWoord(String woord) {
         if (woord == null || woord.trim().isEmpty()) {
             throw new DomainException("Het woord mag niet leeg zijn.");
@@ -35,6 +41,20 @@ public class Woord {
         else {
             throw new DomainException("Het niveau mag enkel 'beginner' of 'expert' zijn.");
         }
+    }
+
+    public int getAantalVerschillendeLetters() {
+        String s = this.getWoord().trim();
+        ArrayList<String> tekens = new ArrayList<String>();
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            String sb = Character.toString(s.charAt(i));
+            if (!tekens.contains(sb)) {
+                tekens.add(sb);
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override
