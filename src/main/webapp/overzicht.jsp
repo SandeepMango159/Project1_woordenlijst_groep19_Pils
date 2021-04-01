@@ -39,7 +39,7 @@
             for (Woord w : woorden) {
         %>
             <tr>
-                <td>0</td>
+                <td><%=woorden.indexOf(w)%></td>
                 <td><%=w.getWoord()%></td>
                 <td><%=w.getNiveau()%></td>
                 <td><a>Pas aan</a></td>
