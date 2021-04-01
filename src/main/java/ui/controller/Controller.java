@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
@@ -52,6 +53,9 @@ public class Controller extends HttpServlet {
             case "delete":
                 destination = delete(request, response);
                 break;
+            case "download":
+                destination = download(request, response);
+                break;
             case "reserveer":
                 destination = reserveer(request, response);
                 break;
@@ -75,6 +79,17 @@ public class Controller extends HttpServlet {
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("woorden", db.getWoorden());
+        return "overzicht.jsp";
+    }
+
+    private String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String filename = "woorden.txt";
+        response.setContentType("APPLICATION/OCTET-STREAM");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename +
+                "\""); PrintWriter out = response.getWriter();
+        for (Woord woord : db.getWoorden())
+            out.println(woord.getWoord());
+        out.close();
         return "overzicht.jsp";
     }
 

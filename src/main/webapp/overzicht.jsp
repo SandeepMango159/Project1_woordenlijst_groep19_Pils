@@ -25,7 +25,7 @@
     </nav>
 </header>
 <main>
-    <h2>Woordenlijst</h2>
+    <h2>Woordenlijst <a href="Controller?command=download">[Download]</a></h2>
     <table>
         <thread>
             <tr>
