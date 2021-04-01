@@ -36,12 +36,14 @@
         <tbody>
         <% ArrayList<Woord> woorden = (ArrayList<Woord>)request.getAttribute("woorden"); %>
         <%
+            int nummer = 0;
             for (Woord w : woorden) {
+                nummer++;
         %>
             <tr>
-                <td>0</td>
+                <td><%=nummer%></td>
                 <td><%=w.getWoord()%></td>
-                <td><%=w.getNiveau()%></td>
+                <td><%=w.getNiveau() == null ? "" : w.getNiveau()%></td>
                 <td><a>Pas aan</a></td>
                 <td><a href="Controller?command=deleteConfirmation&naam=<%= w.getWoord() %>">Verwijder</a></td>
             </tr>
