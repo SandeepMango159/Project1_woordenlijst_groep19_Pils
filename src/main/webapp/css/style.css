@@ -193,7 +193,7 @@ footer {
 @media screen and (min-width: 600px) {
 
     nav ul li{
-        width: 25%;
+        width: 33.3333333%;
     }
 
     form {

@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!--Stelt de zichtbare ruimte van de site in-->
-    <title>Jarne's vakantiehuis - Homepagina</title> <!--Geeft de titel weer in de tab van de browser-->
+    <title>Groep 19 - Woordenlijst</title> <!--Geeft de titel weer in de tab van de browser-->
     <link rel="icon" type="image/png" href="images/logo.png" sizes="32x32"> <!--Geeft het icoontje weer in de tab van de browser-->
     <link rel="stylesheet" href="css/reset.css"> <!--Linkt met de stylesheet-->
     <link rel="stylesheet" href="css/style.css">
@@ -18,37 +18,32 @@
     </h1>
     <nav>
         <ul>
-            <li><a href="Controller?command=home">Homepagina</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
-            <li><a href="Controller?command=reserveer">Reserveer nu</a></li>
-            <li class = "actievePagina"><a href="Controller?command=overview">Overzicht</a></li>
-            <li><a href="Controller?command=zoeken">Zoeken</a></li><!--href linkt naar de andere pagina-->
+            <li><a href="Controller?command=home">Home</a></li> <!--class kan aan meerdere elementen gelinkt worden-->
+            <li><a href="Controller?command=reserveer">Nieuw woord</a></li>
+            <li class = "actievePagina"><a href="Controller?command=overview">Toon woordenlijst</a></li>
         </ul>
     </nav>
 </header>
 <main>
-    <h2>Overzicht reserveringen</h2>
+    <h2>Woordenlijst</h2>
     <table>
         <thread>
             <tr>
-                <th>Naam</th>
-                <th>Aantal</th>
-                <th>Start verblijf</th>
-                <th>Einde verblijf</th>
-                <th>Pas aan</th>
-                <th>Verwijder</th>
+                <th>Nummer</th>
+                <th>Woord</th>
+                <th>Niveau</th>
         </thread>
         <tbody>
-        <% ArrayList<Reservering> reserveringen = (ArrayList<Reservering>)request.getAttribute("reserveringen"); %>
+        <% ArrayList<Woord> woorden = (ArrayList<Woord>)request.getAttribute("woorden"); %>
         <%
-            for (Reservering r : reserveringen) {
+            for (Woord w : woorden) {
         %>
             <tr>
-                <td><%=r.getNaam()%></td>
-                <td><%=r.getAantalGasten()%></td>
-                <td><%=r.getStartdatum()%></td>
-                <td><%=r.getEinddatum()%></td>
+                <td>0</td>
+                <td><%=w.getWoord()%></td>
+                <td><%=w.getNiveau()%></td>
                 <td><a>Pas aan</a></td>
-                <td><a href="Controller?command=deleteConfirmation&naam=<%= r.getNaam() %>">Verwijder</a></td>
+                <td><a href="Controller?command=deleteConfirmation&naam=<%= w.getWoord() %>">Verwijder</a></td>
             </tr>
         <% }
         %>
@@ -56,7 +51,7 @@
     </table>
 </main>
 <footer>
-    <p>Webontwikkeling 2 1TI6 2020-2021</p>
+    <p>Project 1 2020-2021, Groep 19</p>
     <p><a href="#top">Terug naar boven</a></p> <!--Linkt naar de top van de pagina-->
 </footer>
 </body>
