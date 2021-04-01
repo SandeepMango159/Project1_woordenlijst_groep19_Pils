@@ -89,4 +89,24 @@ public class Woordenlijst {
         float result = (float) tekens/ (float)aantalWoorden;
         return Math.round(result*100.0F)/100.0F;
     }
+
+    public List<Woord> getBeginner() {
+        ArrayList<Woord> result = new ArrayList<Woord>();
+        for (Woord w : this.getWoorden()) {
+            if (w.getNiveau().equals("beginner")) {
+                result.add(w);
+            }
+        }
+        return result;
+    }
+
+    public List<Woord> getExpert() {
+        ArrayList<Woord> result = new ArrayList<Woord>();
+        for (Woord w : this.getWoorden()) {
+            if (w.getNiveau().equals("expert")) {
+                result.add(w);
+            }
+        }
+        return result;
+    }
 }

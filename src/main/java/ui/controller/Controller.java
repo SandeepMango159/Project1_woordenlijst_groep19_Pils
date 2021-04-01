@@ -82,8 +82,18 @@ public class Controller extends HttpServlet {
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("woorden", db.getWoorden());
-        return "overzicht.jsp";
+        String filter = request.getParameter("filter");
+        if (filter == "expert") {
+            request.setAttribute("woorden", db.getExpert());
+            return "overzicht.jsp";
+        }
+        else if (filter == "beginner") {
+            request.setAttribute("woorden", db.getBeginner());
+            return "overzicht.jsp";
+        } else {
+            request.setAttribute("woorden", db.getWoorden());
+            return "overzicht.jsp";
+        }
     }
 
     private String download(HttpServletRequest request, HttpServletResponse response) throws IOException {

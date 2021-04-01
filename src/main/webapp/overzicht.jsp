@@ -26,6 +26,9 @@
 </header>
 <main>
     <h2>Woordenlijst <a href="Controller?command=download">[Download]</a></h2>
+    <p>Kies een filter: <a href="Controller?command=overview&filter=beginner">Beginner-woorden</a>
+        <a href="Controller?command=overview&filter=expert">Expert-woorden</a>
+        <a href="Controller?command=overview">Alle-woorden</a></p>
     <table>
         <thread>
             <tr>
