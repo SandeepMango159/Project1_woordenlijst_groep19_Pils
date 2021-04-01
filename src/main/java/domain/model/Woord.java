@@ -35,11 +35,11 @@ public class Woord {
     }
 
     public void setNiveau(String niveau) {
-        if (niveau.equals("beginner")  || niveau.equals("expert")) {
+        if (niveau.equals("beginner")  || niveau.equals("expert") || niveau.isEmpty()) {
             this.niveau = niveau;
         }
         else {
-            throw new DomainException("Het niveau mag enkel 'beginner' of 'expert' zijn.");
+            throw new DomainException("Het niveau mag enkel leeg, 'beginner' of 'expert' zijn.");
         }
     }
 

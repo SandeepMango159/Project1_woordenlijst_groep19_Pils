@@ -95,7 +95,7 @@ public class Controller extends HttpServlet {
         if (this.db.vind(woord) != null) {
             request.setAttribute("niveau", this.db.vind(woord).getNiveau());
         }
-        return "reserveer.jsp";
+        return "woordToevoegen.jsp";
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
@@ -131,40 +131,21 @@ public class Controller extends HttpServlet {
     private String submitWoordToevoegen(HttpServletRequest request, HttpServletResponse response) {
         String woord = request.getParameter("woord");
         String niveau = request.getParameter("niveau");
-        System.out.println("niveau is " + niveau);
+        System.out.println(niveau);
         // Woord mag sowieso niet leeg
 
         try {
 
             if (!niveau.isEmpty()) {
-                    Woord newWoord = new Woord(woord, niveau);
-                    db.voegToe(newWoord);
-                    return overview(request, response);
-                }
-            else {
-            Woord newWoord = new Woord(woord);
-            db.voegToe(newWoord);
-            return overview(request, response);
+                Woord newWoord = new Woord(woord, niveau);
+                db.voegToe(newWoord);
+                return overview(request, response);
             }
-
-
-//            if (woord != null && !woord.isEmpty()) {
-//            if (!woord.isEmpty()) {
-            // Als niveau niet leeg is
-//              if (niveau != null && !niveau.isEmpty()) {
-//
-            // Als niveau wel leeg is, dan gewoon niks
-//                else {
-//                    Woord newWoord = new Woord(woord);
-//                    db.voegToe(newWoord);
-//                    return overview(request, response);
-//                }
-//        }
-//            else {
-//                String foutboodschap = "Je woord mag niet leeg zijn";
-//                request.setAttribute("foutboodschap", foutboodschap);
-//                return "woordToevoegen.jsp";
-//            }
+            else {
+                Woord newWoord = new Woord(woord);
+                db.voegToe(newWoord);
+                return overview(request, response);
+            }
         }
         catch (DomainException e) {
             String foutboodschap = e.getMessage();

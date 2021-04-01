@@ -37,16 +37,16 @@
 
         <p>
             <label for="woord">Woord *:</label>
-            <input type="text" id="woord" name="woord"  required placeholder="Woord">
+            <input type="text" id="woord" name="woord" placeholder="Woord" required value=<%= request.getAttribute("woord") != null ? request.getAttribute("woord") : ""%>>
         </p>
 
         <p>
         <p>
             <label for="niveau">Niveau:</label>
             <select id="niveau" name="niveau"  >
-                <option value="">Kies</option>
-                <option value="beginner">beginner</option>
-                <option value="expert">expert</option>
+                <option value="" <%= request.getAttribute("niveau") != null && request.getAttribute("niveau").equals("") ? "selected" : ""%>>Kies</option>
+                <option value="beginner" <%= request.getAttribute("niveau") != null && request.getAttribute("niveau").equals("beginner") ? "selected" : ""%>>beginner</option>
+                <option value="expert" <%= request.getAttribute("niveau") != null && request.getAttribute("niveau").equals("expert") ? "selected" : ""%>>expert</option>
             </select>
         </p>
 
