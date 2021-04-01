@@ -2,7 +2,7 @@ package domain.model;
 
 public class Woord {
     private String woord;
-    private String niveau;
+    private String niveau = "";
 
     public Woord(String woord) {
         this.setWoord(woord);
@@ -29,17 +29,21 @@ public class Woord {
     }
 
     public void setNiveau(String niveau) {
-        if (niveau != "beginner" && niveau != "expert") {
+        if (niveau.equals("beginner")  || niveau.equals("expert")) {
+            this.niveau = niveau;
+        }
+        else {
             throw new DomainException("Het niveau mag enkel 'beginner' of 'expert' zijn.");
         }
-        this.niveau = niveau;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Woord) {
             Woord woord = (Woord) obj;
-            if (this.getWoord().equals(woord.getWoord()) && this.getNiveau().equals(woord.getNiveau())) {
+            // Een woord mag niet 2 keer in de lijst voorkomen want dan kan je
+            // "hangman expert" en "hangman beginner" hebben, dus enkel op woord checken niet op woord en niveau
+            if (this.getWoord().equals(woord.getWoord())) {
                 return true;
             }
         }
