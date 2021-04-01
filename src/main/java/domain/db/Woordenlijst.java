@@ -93,7 +93,7 @@ public class Woordenlijst {
     public List<Woord> getBeginner() {
         ArrayList<Woord> result = new ArrayList<Woord>();
         for (Woord w : this.getWoorden()) {
-            if (w.getNiveau().equals("beginner")) {
+            if (w.getNiveau() != null && w.getNiveau().equals("beginner")) {
                 result.add(w);
             }
         }
@@ -103,7 +103,7 @@ public class Woordenlijst {
     public List<Woord> getExpert() {
         ArrayList<Woord> result = new ArrayList<Woord>();
         for (Woord w : this.getWoorden()) {
-            if (w.getNiveau().equals("expert")) {
+            if (w.getNiveau() != null && w.getNiveau().equals("expert")) {
                 result.add(w);
             }
         }

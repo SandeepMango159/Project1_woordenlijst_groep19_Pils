@@ -83,11 +83,15 @@ public class Controller extends HttpServlet {
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
         String filter = request.getParameter("filter");
-        if (filter == "expert") {
+        if (filter == null) {
+            request.setAttribute("woorden", db.getWoorden());
+            return "overzicht.jsp";
+        }
+        else if (filter.equals("expert")) {
             request.setAttribute("woorden", db.getExpert());
             return "overzicht.jsp";
         }
-        else if (filter == "beginner") {
+        else if (filter.equals("beginner")) {
             request.setAttribute("woorden", db.getBeginner());
             return "overzicht.jsp";
         } else {
